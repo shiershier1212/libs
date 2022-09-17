@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.gxu.dao.BookDao">
+
+    <resultMap id="myBook" type="cn.edu.gxu.model.Book">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="author" column="author"/>
+        <result property="publisher" column="publisher"/>
+        <result property="price" column="price"/>
+        <result property="image" column="image"/>
+        <association property="type" javaType="cn.edu.gxu.model.Type">
+            <id property="id" column="typeid"/>
+            <result property="typename" column="typename"/>
+        </association>
+    </resultMap>
+
+    <select id="selectAllBook" resultMap="myBook">
+        select book.id,
+               book.name,
+               book.author,
+               book.publisher,
+               book.price,
+               book.image,
+               type.typename as typename
+        from book,
+             type
+        where book.typeid = type.id
+    </select>
+
+
+    <select id="selectBookById" resultType="cn.edu.gxu.model.Book">
+        select *
+        from book
+        where id = #{id}
+    </select>
+
+    <insert id="insertBook">
+        insert into book(name, ename, author, publisher, pdate, isbn, price, address, brief, typeid, image)
+        values (#{name}, #{ename}, #{author}, #{publisher}, #{pdate}, #{isbn}, #{price}, #{address}, #{brief},
+                #{typeid}, #{image})
+    </insert>
+
+    <update id="updateBookById">
+        update book
+        set name=#{name},
+            ename=#{ename},
+            author=#{author},
+            publisher=#{publisher},
+            pdate=#{pdate},
+            isbn=#{isbn},
+            price=#{price},
+            address=#{address},
+            brief=#{brief},
+            typeid=#{typeid},
+            image=#{image}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBookById" >
+        delete  from book where id = #{id}
+    </delete>
+
+</mapper>

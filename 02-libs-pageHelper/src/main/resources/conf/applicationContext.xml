@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="cn.edu.gxu.controller"/>
+
+    <bean id="myDatasource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/libs?characterEncoding=utf8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="myDatasource"/>
+        <property name="configLocation" value="classpath:conf/mybatis.xml"/>
+<!--        注入分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <props>
+                            <prop key="helperDialect">mysql</prop>
+                            <prop key="resonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--        指定SqlSessionFactory的名字-->
+        <property name="SqlSessionFactoryBeanName" value="factory"/>
+        <!--        指定基本包，dao接口所在的包名-->
+        <property name="basePackage" value="cn.edu.gxu.dao"/>
+    </bean>
+
+    <bean id="typeService" class="cn.edu.gxu.service.impl.TypeServiceImpl">
+    </bean>
+    <bean id="borrowService" class="cn.edu.gxu.service.impl.BorrowServiceImpl">
+    </bean>
+    <bean id="userService" class="cn.edu.gxu.service.impl.UserServiceImpl">
+    </bean>
+    <bean id="bookService" class="cn.edu.gxu.service.impl.BookServiceImpl">
+    </bean>
+    <bean id="customerService" class="cn.edu.gxu.service.impl.CustomerServiceImpl">
+    </bean>
+</beans>

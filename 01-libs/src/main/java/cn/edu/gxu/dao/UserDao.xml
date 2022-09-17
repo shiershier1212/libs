@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.gxu.dao.UserDao">
+
+    <select id="selectAllUser" resultType="cn.edu.gxu.model.User">
+        select *
+        from user
+    </select>
+
+    <select id="selectUserById" resultType="cn.edu.gxu.model.User">
+        select *
+        from user
+        where id = #{id}
+    </select>
+
+    <select id="selectByPhoneAndPass" resultType="cn.edu.gxu.model.User">
+        select *from user where phone=#{phone} and pass=#{pass}
+    </select>
+
+
+    <insert id="insertUser">
+        insert into user(name, phone, pass)
+        values (#{name}, #{phone}, #{pass})
+    </insert>
+
+    <update id="updateUserById">
+        update user
+        <set>
+            <if test="name!=null and name.length()>0">name = #{name},</if>
+            <if test="phone!=null and phone.length()>0">phone = #{phone},</if>
+            <if test="pass!=null and pass.length()>0">pass = #{pass}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+</mapper>

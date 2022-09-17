@@ -1,0 +1,3 @@
+# Project exclude paths
+/01-libs/target/
+/02-libs-pageHelper/target/

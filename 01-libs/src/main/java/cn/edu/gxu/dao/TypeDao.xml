@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.gxu.dao.TypeDao">
+
+    <select id="selectAllType" resultType="cn.edu.gxu.model.Type">
+        select *
+        from type
+    </select>
+
+    <insert id="insertType">
+        insert into type(typename)
+        values (#{typename})
+    </insert>
+
+    <update id="updateTypeById">
+        update type
+        <set>
+            <if test="typename!=null and typename.length()>0">typename = #{typename}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTypeById" >
+        delete from type where id = #{id}
+    </delete>
+</mapper>

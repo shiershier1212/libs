@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.gxu.dao.BorrowDao">
+
+    <resultMap id="myBorrow" type="cn.edu.gxu.model.Borrow">
+        <id property="id" column="id"/>
+        <result property="bookid" column="bookid"/>
+        <result property="customerid" column="customerid"/>
+        <result property="bdate" column="bdate"/>
+        <result property="rdate" column="rdate"/>
+<!--        联合其他实体-->
+        <association property="book" javaType="cn.edu.gxu.model.Book">
+            <id property="id" column="bookid"/>
+            <result property="name" column="bname"/>
+        </association>
+
+        <association property="customer" javaType="cn.edu.gxu.model.Customer">
+            <id property="id" column="customerid"/>
+            <result property="name" column="cname"/>
+        </association>
+
+    </resultMap>
+
+
+    <select id="selectAllBorrow" resultMap="myBorrow">
+        select borrow.*,
+               book.id       as book_id,
+               book.name     as bname,
+               book.ename,
+               book.address,
+               book.author,
+               book.brief,
+               book.pdate,
+               book.isbn,
+               book.price,
+               customer.id   as customer_id,
+               customer.company,
+               customer.name as cname
+        from borrow,
+             book,
+             customer
+        WHERE bookid = book.id
+          and customerid = customer.id
+          and rdate is null
+    </select>
+</mapper>

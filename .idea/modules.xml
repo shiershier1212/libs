@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01-libs/01-libs.iml" filepath="$PROJECT_DIR$/01-libs/01-libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-libs-pageHelper/02-libs-pageHelper.iml" filepath="$PROJECT_DIR$/02-libs-pageHelper/02-libs-pageHelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs.iml" filepath="$PROJECT_DIR$/libs.iml" />
+    </modules>
+  </component>
+</project>

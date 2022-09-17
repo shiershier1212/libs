@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/01-libs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/01-libs/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02-libs-pageHelper/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02-libs-pageHelper/src/test/java/cn/edu/gxu/service/BookServiceTest.java" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>
